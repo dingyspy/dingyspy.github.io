@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DinghyWorks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="back"> </div>
+
+        <nav class="nav">
+            <div class="container">
+                <a class="site-title" href="https://dingyspy.github.io/">DinghyWorks</a>
+            </div>
+            <span> | </span>
+            <a class="extra-title" href="https://dingyspy.github.io/"><img src="images/dinghy.png" width="60"></a>
+            <span> | </span>
+            <div class="login">
+                <label for="lname" id="lvalue"></label>
+                <input type="text" id="lname"><br><br>
+            </div>
+        </nav>
+
+        <div class="message-back">
+            <div class="message">
+                <span>hi</span>
+            </div>
+            <div class="message">
+                <span>hi</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    random = btoa(random_string(6))
+    document.getElementById('lvalue').innerHTML = random + ':'
+
+    function random_string(len){
+        var string = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        for(var i, i = 0; i < len; i++){
+            string += characters.charAt(Math.floor(Math.random() * characters.length))
+        }
+        return string
+    }
+</script>
+</html>
