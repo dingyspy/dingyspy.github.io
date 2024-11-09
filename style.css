@@ -33,13 +33,24 @@ label{
     align-items: center;
     min-height: 110vh;
 }
-span{
-    color: white;
+p{
+    color: rgb(168, 168, 168);
 }
 .wrapper img{
     width: 300px;
     border-radius: 5px;
     position: relative;
+    display: flex;
+    align-items: center;
     margin-top: 5000px;
+    margin-bottom: 200px;
+}
+.image2{
+    width: 300px;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 6000px;
     margin-bottom: 200px;
 }
