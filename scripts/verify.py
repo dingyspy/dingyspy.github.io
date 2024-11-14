@@ -47,18 +47,18 @@ id = json.loads(response.text)['cards'][0]['id']
 
 ##
 
-if ip != 'null':
-	if ip != socket.gethostbyname(socket.gethostname()):
-		_return('none')
-	else:
-		_return('success')
-
 if _activation_code == activation_code:
-	new_query = query
-	new_query['desc'] = user + '\n' + socket.gethostbyname(socket.gethostname())
+	if ip != 'null':
+		if ip == socket.gethostbyname(socket.gethostname()):
+			_return('success')
+		else:
+			_return('none')
+	elif ip == 'null':
+		new_query = query
+		new_query['desc'] = user + '\n' + socket.gethostbyname(socket.gethostname())
 
-	response = requests.request("PUT", url + '1/cards/' + id, headers=headers, params=new_query)
-	if response.status_code != 200:
-		_return('none')
+		response = requests.request("PUT", url + '1/cards/' + id, headers=headers, params=new_query)
+		if response.status_code != 200:
+			_return('none')
 
-	_return('success')
+		_return('success')
