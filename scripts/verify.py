@@ -52,7 +52,7 @@ if _activation_code == activation_code:
 		if ip == socket.gethostbyname(socket.gethostname()):
 			_return('success')
 		else:
-			_return('none')
+			_return('used')
 	elif ip == 'null':
 		new_query = query
 		new_query['desc'] = user + '\n' + socket.gethostbyname(socket.gethostname())
