@@ -3,6 +3,13 @@ import json
 import socket
 import os
 
+def _return(text):
+	sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
+	sn_file.write(text)
+	sn_file.close()
+
+	exit()
+
 apikey = '58264bfd3840f26cb713df830cb35802'
 apitoken = 'ATTAe4d661765247910d78f01b1de0f4d20295070c8c8bf1755a5a6b0f3ac5257707625AD8AF'
 
@@ -41,12 +48,10 @@ id = json.loads(response.text)['cards'][0]['id']
 ##
 
 if ip != 'null':
-	sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
-	sn_file.write('none')
-	sn_file.close()
-
-	print('ip already exists')
-	exit()
+	if ip != socket.gethostbyname(socket.gethostname()):
+		_return('none')
+	else:
+		_return('success')
 
 if _activation_code == activation_code:
 	new_query = query
@@ -54,13 +59,6 @@ if _activation_code == activation_code:
 
 	response = requests.request("PUT", url + '1/cards/' + id, headers=headers, params=new_query)
 	if response.status_code != 200:
-		sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
-		sn_file.write('none')
-		sn_file.close()
+		_return('none')
 
-		print('put fail')
-		exit()
-
-	sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
-	sn_file.write('success')
-	sn_file.close()
+	_return('success')
