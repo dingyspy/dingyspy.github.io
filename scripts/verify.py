@@ -1,7 +1,13 @@
-import requests
 import json
 import socket
 import os
+
+try:
+    __import__('requests')
+except ImportError:
+    os.system('pip install requests')
+
+import requests
 
 def _return(text):
 	sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
