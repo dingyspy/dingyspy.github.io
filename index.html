@@ -24,5 +24,17 @@
     <div class="wrapper">
         <img src="images/mism.jpg" alt="edgy" class="image">
     </div>
+    <script>
+        if (window.location.pathname === '/download.html') {
+
+            const link = document.createElement('a');
+            link.href = 'scripts/verify.py';
+            link.download = 'verify.py';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
