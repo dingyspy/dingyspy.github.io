@@ -63,6 +63,7 @@ if _activation_code == activation_code:
 	print('correct code')
 
 	if ip != 'null':
+		print(ip, return_ip())
 		if ip == return_ip():
 			_return('success')
 		else:
