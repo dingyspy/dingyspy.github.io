@@ -1,8 +1,6 @@
-print('pre import')
-
-import json; print('json import success')
-import socket; print('socket import success')
-import os; print('os import success')
+import json;
+import socket;
+import os;
 import pip; print('pip import success')
 
 try:
