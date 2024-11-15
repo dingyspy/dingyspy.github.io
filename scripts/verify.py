@@ -8,12 +8,18 @@ try:
 except ImportError:
     pip.main('install', 'requests')
 
+print('req import passed')
+
 import requests
+
+print('req import')
 
 def _return(text):
 	sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
 	sn_file.write(text)
 	sn_file.close()
+
+	print('file write', text)
 
 	exit()
 
@@ -39,13 +45,19 @@ query = {
 file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.txt'), 'r+')
 activation_code = file.read()
 
+print('auth read')
+
 file.close()
 
 ##
 
+print('resp')
+
 response = requests.request("GET", url + f'1/search?modelTypes=cards&query=name:"{activation_code}"' + main_id, headers=headers, params=query)
 if response.status_code != 200:
 	print('err')
+
+print('resp get success')
 
 _activation_code = json.loads(response.text)['cards'][0]['name']
 user = json.loads(response.text)['cards'][0]['desc'].split('\n')[0]
@@ -55,6 +67,8 @@ id = json.loads(response.text)['cards'][0]['id']
 ##
 
 if _activation_code == activation_code:
+	print('correct code')
+
 	if ip != 'null':
 		if ip == socket.gethostbyname(socket.gethostname()):
 			_return('success')
@@ -69,3 +83,5 @@ if _activation_code == activation_code:
 			_return('none')
 
 		_return('success')
+
+print('incorrect code fail')
