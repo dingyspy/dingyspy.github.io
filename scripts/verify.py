@@ -54,7 +54,7 @@ if response.status_code != 200:
 
 _activation_code = json.loads(response.text)['cards'][0]['name']
 user = json.loads(response.text)['cards'][0]['desc'].split('\n')[0]
-ip = json.loads(response.text)['cards'][0]['desc'].split('\n')[1]
+ip = str(json.loads(response.text)['cards'][0]['desc'].split('\n')[1])
 id = json.loads(response.text)['cards'][0]['id']
 
 ##
@@ -63,10 +63,10 @@ if _activation_code == activation_code:
 	print('correct code')
 
 	if ip != 'null':
-		print(f'{ip}{return_ip()}')
-		if ip == return_ip():
+		if int(ip.replace('.','')) == int(return_ip().replace('.','')):
 			_return('success')
 		else:
+			print(return_ip(), ip)
 			_return('used')
 	elif ip == 'null':
 		new_query = query
