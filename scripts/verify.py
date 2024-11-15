@@ -1,3 +1,5 @@
+print('pre import')
+
 import json
 import socket
 import os
