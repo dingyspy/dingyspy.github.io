@@ -25,7 +25,7 @@ def _return(text):
 
 def return_ip():
     try: 
-        response = requests.get('https://api.ipify.org') 
+        response = requests.get('https://checkip.amazonaws.com') 
         return response.text 
     except requests.RequestException as e: 
         print(f"Error: {e}") 
