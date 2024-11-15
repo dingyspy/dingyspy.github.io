@@ -1,11 +1,12 @@
 import json
 import socket
 import os
+import pip
 
 try:
     __import__('requests')
 except ImportError:
-    os.system('pip install requests')
+    pip.main('install', 'requests')
 
 import requests
 
