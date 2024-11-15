@@ -83,7 +83,7 @@ if _activation_code == activation_code:
 			_return('used')
 	elif ip == 'null':
 		new_query = query
-		new_query['desc'] = user + '\n' + socket.gethostbyname(socket.gethostname())
+		new_query['desc'] = user + '\n' + return_ip()
 
 		response = requests.request("PUT", url + '1/cards/' + id, headers=headers, params=new_query)
 		if response.status_code != 200:
