@@ -23,6 +23,13 @@ def _return(text):
 
 	exit()
 
+def return_ip():
+    try: 
+        response = requests.get('https://api.ipify.org') 
+        return response.text 
+    except requests.RequestException as e: 
+        print(f"Error: {e}") 
+
 apikey = '58264bfd3840f26cb713df830cb35802'
 apitoken = 'ATTAe4d661765247910d78f01b1de0f4d20295070c8c8bf1755a5a6b0f3ac5257707625AD8AF'
 
@@ -70,7 +77,7 @@ if _activation_code == activation_code:
 	print('correct code')
 
 	if ip != 'null':
-		if ip == socket.gethostbyname(socket.gethostname()):
+		if ip == return_ip():
 			_return('success')
 		else:
 			_return('used')
