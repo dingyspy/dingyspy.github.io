@@ -6,7 +6,7 @@ import pip; print('pip import success')
 try:
     __import__('requests')
 except ImportError:
-    pip.main('install', 'requests')
+    pip.main(['install', 'requests'])
 
 print('req import passed')
 
