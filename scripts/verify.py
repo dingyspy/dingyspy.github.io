@@ -1,18 +1,13 @@
 import json;
-import socket;
 import os;
-import pip; print('pip import success')
+import pip;
 
 try:
     __import__('requests')
 except ImportError:
     pip.main(['install', 'requests'])
 
-print('req import passed')
-
 import requests
-
-print('req import')
 
 def _return(text):
 	sn_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'return.txt'), 'w')
@@ -26,12 +21,18 @@ def _return(text):
 def return_ip():
     try: 
         response = requests.get('https://checkip.amazonaws.com') 
-        return response.text 
+        return str(response.text)
     except requests.RequestException as e: 
         print(f"Error: {e}") 
 
-apikey = '58264bfd3840f26cb713df830cb35802'
-apitoken = 'ATTAe4d661765247910d78f01b1de0f4d20295070c8c8bf1755a5a6b0f3ac5257707625AD8AF'
+file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.txt'), 'r+')
+file_read = file.read()
+
+activation_code = file_read.split()[0]
+apikey = file_read.split()[1]
+apitoken = file_read.split()[2]
+
+file.close()
 
 main_id = '6735327a717d21db02522478'
 archive_id = '67353294d163f6af8e4ba72a'
@@ -47,28 +48,13 @@ query = {
 	'token': apitoken,
 }
 
-# main #
-
-file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'auth.txt'), 'r+')
-activation_code = file.read()
-
-print('auth read')
-
-file.close()
-
-##
-
-print('resp')
-
 response = requests.request("GET", url + f'1/search?modelTypes=cards&query=name:"{activation_code}"' + main_id, headers=headers, params=query)
 if response.status_code != 200:
 	print('err')
 
-print('resp get success')
-
 _activation_code = json.loads(response.text)['cards'][0]['name']
 user = json.loads(response.text)['cards'][0]['desc'].split('\n')[0]
-ip = json.loads(response.text)['cards'][0]['desc'].split('\n')[1]
+ip = str(json.loads(response.text)['cards'][0]['desc'].split('\n')[1])
 id = json.loads(response.text)['cards'][0]['id']
 
 ##
