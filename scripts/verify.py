@@ -21,7 +21,7 @@ def _return(text):
 def return_ip():
     try: 
         response = requests.get('https://checkip.amazonaws.com') 
-        return str(response.text).replace(' ', '')
+        return response.text
     except requests.RequestException as e: 
         print(f"Error: {e}") 
 
@@ -54,7 +54,7 @@ if response.status_code != 200:
 
 _activation_code = json.loads(response.text)['cards'][0]['name']
 user = json.loads(response.text)['cards'][0]['desc'].split('\n')[0]
-ip = str(json.loads(response.text)['cards'][0]['desc'].split('\n')[1]).replace(' ', '')
+ip = json.loads(response.text)['cards'][0]['desc'].split('\n')[1]
 id = json.loads(response.text)['cards'][0]['id']
 
 ##
@@ -64,7 +64,7 @@ if _activation_code == activation_code:
 
 	if ip != 'null':
 		print(ip, return_ip())
-		if ip == return_ip():
+		if return_ip() in ip:
 			_return('success')
 		else:
 			_return('used')
