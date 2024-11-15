@@ -9,7 +9,7 @@
 }
 
 body{
-    background-image: url('images/placeholder.jpg');
+    background-image: url('images/me_fijn.png');
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,6 +18,11 @@ body{
 }
 
 a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+h1, h2, h3, h4, h5{
     text-decoration: none;
     color: white;
     font-size: 18px;
@@ -71,15 +76,16 @@ span{
 
 .message-back{
     display: flex;
-    align-items: center;
+    align-items: top;
     justify-content: space-between;
     flex-direction: column;
     padding: 10%;
+    position: absolute;
+    top: 0;
 }
 .message{
-    width: 500px;
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.8);
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     border-radius: 10px;
 }
